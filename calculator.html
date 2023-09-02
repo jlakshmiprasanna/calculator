@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body style="background-image: url(bak2.jpg); background-repeat: no-repeat; background-size: 100%;">
+    <u>
+        <h1>CALCULATOR</h1>
+    </u>
+    <center>
+
+        <div class="calculator">
+        </div>
+        <input type="text" id="result" readonly>
+        <table>
+            <tr>
+                <td><button onclick="appendNumber(7)">7</button></td>
+                <td><button onclick="appendNumber(8)">8</button></td>
+                <td><button onclick="appendNumber(9)">9</button></td>
+                <td><button onclick="setOperator('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendNumber(4)">4</button></td>
+                <td><button onclick="appendNumber(5)">5</button></td>
+                <td><button onclick="appendNumber(6)">6</button></td>
+                <td><button onclick="setOperator('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendNumber(1)">1</button></td>
+                <td><button onclick="appendNumber(2)">2</button></td>
+                <td><button onclick="appendNumber(3)">3</button></td>
+                <td><button onclick="setOperator('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendNumber(0)">0</button></td>
+                <td><button onclick="clearResult('c')">C</button></td>
+                <td><button onclick="calculate('=')">=</button></td>
+                <td><button onclick="setOperator('/')">/</button></td>
+
+            </tr>
+        </table>
+    </center>
+    </div>
+    <script>
+        let operator = '';
+        let firstNumber = '';
+        let secondNumber = '';
+
+
+        function appendNumber(num) {
+            if (operator === '') {
+                firstNumber += num;
+                document.getElementById('result').value = firstNumber;
+            } else {
+                secondNumber += num;
+                document.getElementById('result').value = secondNumber;
+            }
+        }
+
+        function setOperator(op) {
+            operator = op;
+        }
+
+        function calculate() {
+            let result;
+            switch (operator) {
+
+                case '+':
+                    result = parseInt(firstNumber) + parseInt(secondNumber);
+                    break;
+                case '-':
+                    result = parseInt(firstNumber) - parseInt(secondNumber);
+                    break;
+                case '*':
+                    result = parseInt(firstNumber) * parseInt(secondNumber);
+                    break;
+                case '/':
+                    result = parseInt(firstNumber) / parseInt(secondNumber);
+                    break;
+            }
+            document.getElementById('result').value = result;
+        }
+
+        function clearResult() {
+
+            operator = '';
+            firstNumber = '';
+            secondNumber = '';
+            document.getElementById('result').value = '';
+
+        }
+    </script>
+</body>
+</html>
